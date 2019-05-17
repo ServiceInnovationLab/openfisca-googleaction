@@ -15,4 +15,4 @@ def index(variable_name='World'):
 port = os.environ.get('PORT', 5000)
 
 # Run the app.
-run(host='0.0.0.0', port=port, reloader=True)
+run(host='0.0.0.0', port=port)
