@@ -11,21 +11,22 @@ def rebate():
     rates = parameters['rates']
     # request_id = json_request['re']
     return {
-      "fulfillmentText": "one million dollars",
-      "payload": {
-        "google": {
-          "expectUserResponse": false,
-          "richResponse": {
-            "items": [
-              {
-                "simpleResponse": {
-                  "textToSpeech": "you are eligible for one million dollars"
+              "fulfillmentText": "one million dollars",
+              "payload": {
+                "google": {
+                  "expectUserResponse": false,
+                  "richResponse": {
+                    "items": [
+                      {
+                        "simpleResponse": {
+                          "textToSpeech": "you are eligible for one million dollars"
+                        }
+                      }
+                    ]
+                  }
                 }
               }
-            ]
-          }
-        }
-    }
+            }
 
 # Get required port, default to 5000.
 port = os.environ.get('PORT', 5000)
