@@ -9,20 +9,20 @@ def get_rebate_amount(dependents, rates, income):
         'persons': {
             'person_one': {
                 'rates_rebates__combined_income': {
-                  '2018': income
+                  '2019': income
                 },
                 'rates_rebates__dependants': {
-                  '2018': dependents
+                  '2019': dependents
                 }
             }
         },
         'titled_properties': {
             'home': {
               'rates_rebates__rates_total': {
-                '2018': rates
+                '2019': rates
               },
               'rates_rebates__rebate': {
-                '2018': None
+                '2019': None
               },
               'owners': ['person_one']
             }
