@@ -43,7 +43,7 @@ def rebate():
 
     rebate = get_rebate_amount(dependents, rates, income)
 
-    reply = "kay teh-pie. You are eligible for {rebate} dollars".format(rebate=rebate)
+    reply = "You are eligible for {rebate} dollars".format(rebate=rebate)
     return {
               "fulfillmentText": reply,
               "payload": {
