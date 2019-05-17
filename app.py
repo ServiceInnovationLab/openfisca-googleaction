@@ -5,7 +5,7 @@ from bottle import post, run, request
 @post('/calculate/rebate')
 def rebate():
     json_request = request.json
-    parameters = json_request['queryResult'['parameters']]
+    parameters = json_request['queryResult']['parameters']
     dependents = parameters['dependents']
     income = parameters['income']
     rates = parameters['rates']
