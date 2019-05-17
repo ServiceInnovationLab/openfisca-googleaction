@@ -29,7 +29,7 @@ def get_rebate_amount(dependents, rates, income):
         },
     }
     of_response = requests.post(OPENFISCA_URL, json=OF_QUERY).json()
-    rebate = of_response['titled_properties']['home']['rates_rebates__rebate']['2018']
+    rebate = of_response['titled_properties']['home']['rates_rebates__rebate']['2019']
     return rebate
 
 
