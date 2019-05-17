@@ -2,7 +2,7 @@ import os
 from bottle import route, run, request
 
 
-@route('/calculate/rebate')
+@post('/calculate/rebate')
 def rebate():
     json_request = request.json
     parameters = json_request['queryResult'['parameters']]
