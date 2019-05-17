@@ -10,8 +10,7 @@ def rebate():
     rates = json_request['parameters']['rates']
     # request_id = json_request['re']
     return {
-      "fulfillmentText": "one million dollars",
-      "source": "https://ratesrebates.services.govt.nz"
+      "fulfillmentText": "one million dollars"
     }
 
 # Get required port, default to 5000.
