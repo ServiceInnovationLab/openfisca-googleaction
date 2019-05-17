@@ -45,7 +45,7 @@ def rebate():
                     "items": [
                       {
                         "simpleResponse": {
-                          "textToSpeech": "you are eligible for one million dollars"
+                          "textToSpeech": reply
                         }
                       }
                     ]
