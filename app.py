@@ -1,5 +1,5 @@
 import os
-from bottle import route, run, request
+from bottle import post, run, request
 
 
 @post('/calculate/rebate')
