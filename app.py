@@ -1,6 +1,7 @@
 import os
 from bottle import post, run, request
-
+import requests
+OPENFISCA_URL = "https://openfisca-aotearoa.herokuapp.com/"
 
 @post('/calculate/rebate')
 def rebate():
