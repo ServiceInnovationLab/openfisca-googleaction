@@ -1,7 +1,37 @@
 import os
 from bottle import post, run, request
 import requests
-OPENFISCA_URL = "https://openfisca-aotearoa.herokuapp.com/"
+OPENFISCA_URL = "https://openfisca-aotearoa.herokuapp.com/calculate"
+
+
+def get_rebate_amount(dependents, rates, income):
+    OF_QUERY = {
+        'persons': {
+            'person_one': {
+                'rates_rebates__combined_income': {
+                  '2018': income
+                },
+                'rates_rebates__dependants': {
+                  '2018': dependents
+                }
+            }
+        },
+        'titled_properties': {
+            'home': {
+              'rates_rebates__rates_total': {
+                '2018': rates
+              },
+              'rates_rebates__rebate': {
+                '2018': None
+              },
+              'owners': ['person_one']
+            }
+        },
+    }
+    of_response = requests.post(OPENFISCA_URL, json=OF_QUERY).json()
+    rebate = of_response['titled_properties']['home']['rates_rebates__rebate']['2018']
+    return rebate
+
 
 @post('/calculate/rebate')
 def rebate():
@@ -11,31 +41,9 @@ def rebate():
     income = parameters['income']
     rates = parameters['rates']
 
+    rebate = get_rebate_amount(dependents, rates, income)
 
-    OF_QUERY = {
-        'persons': {
-            'person_one': {
-                'rates_rebates__combined_income': {
-                  '2018-01': income
-                },
-                'rates_rebates__dependants': {
-                  '2018-01': dependents
-                }
-            }
-        },
-        'titled_properties': {
-            'home': {
-              'rates_rebates__rates_total': {
-                '2018-01': rates
-              },
-              'owner': 'person_one'
-            }
-        },
-    }
-
-    # request_id = json_request['re']
-    reply = "kay tea pie. if you have an income of {income} dollars and rates of {rates} dollars and {dependents} dependants, then you are eligible for one million dollars".format(
-        income=income, dependents=dependents, rates=rates)
+    reply = "kay tea pie. You are eligible for {rebate} dollars".format(rebate=rebate)
     return {
               "fulfillmentText": reply,
               "payload": {
@@ -54,8 +62,5 @@ def rebate():
               }
             }
 
-# Get required port, default to 5000.
 port = os.environ.get('PORT', 5000)
-
-# Run the app.
 run(host='0.0.0.0', port=port)
