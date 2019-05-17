@@ -10,9 +10,34 @@ def rebate():
     dependents = parameters['dependents']
     income = parameters['income']
     rates = parameters['rates']
+
+
+    OF_QUERY = {
+        'persons': {
+            'person_one': {
+                'rates_rebates__combined_income': {
+                  '2018-01': income
+                },
+                'rates_rebates__dependants': {
+                  '2018-01': dependents
+                }
+            }
+        },
+        'titled_properties': {
+            'home': {
+              'rates_rebates__rates_total': {
+                '2018-01': rates
+              },
+              'owner': 'person_one'
+            }
+        },
+    }
+
     # request_id = json_request['re']
+    reply = "kay tea pie. if you have an income of {income} dollars and rates of {rates} dollars and {dependents} dependants, then you are eligible for one million dollars".format(
+        income=income, dependents=dependents, rates=rates)
     return {
-              "fulfillmentText": "one million dollars",
+              "fulfillmentText": reply,
               "payload": {
                 "google": {
                   "expectUserResponse": False,
