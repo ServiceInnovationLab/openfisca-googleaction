@@ -14,7 +14,7 @@ def rebate():
               "fulfillmentText": "one million dollars",
               "payload": {
                 "google": {
-                  "expectUserResponse": false,
+                  "expectUserResponse": False,
                   "richResponse": {
                     "items": [
                       {
