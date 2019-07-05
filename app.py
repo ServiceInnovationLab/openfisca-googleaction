@@ -9,27 +9,27 @@ def get_rebate_amount(dependents, rates, income):
         'persons': {
             'person_one': {
                 'rates_rebates__combined_income': {
-                  '2019': income
+                  '2020': income
                 },
                 'rates_rebates__dependants': {
-                  '2019': dependents
+                  '2020': dependents
                 }
             }
         },
         'titled_properties': {
             'home': {
               'rates_rebates__rates_total': {
-                '2019': rates
+                '2020': rates
               },
               'rates_rebates__rebate': {
-                '2019': None
+                '2020': None
               },
               'owners': ['person_one']
             }
         },
     }
     of_response = requests.post(OPENFISCA_URL, json=OF_QUERY).json()
-    rebate = of_response['titled_properties']['home']['rates_rebates__rebate']['2019']
+    rebate = of_response['titled_properties']['home']['rates_rebates__rebate']['2020']
     return rebate
 
 
